@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Lista pesama</string>
+
+  <string name="findSong">Trazi pesmu</string>
+  <string name="songTitle">Naziv pesme</string>
+  <string name="songArtist">Izvodjac pesme</string>
+  <string name="songGenre">Zanr pesme</string>
+  <string name="songOrder">Redni broj pesme</string>
+  <string name="save">Sacuvaj</string>
+  <string name="cancel">Odustani</string>
+  <string name="delete">Obrisi</string>
+  <string name="successfullyAddedSong">Uspesno dodata pesma</string>
+  <string name="openFile">Ubaci pesme iz fajla</string>
+  <string name="serverName">Naziv servera</string>
+  <string name="emptyServerName">Ime servera ne sme biti prazno</string>
+  <string name="cannotConnectToServer">Server nije dostupan, ili ste uneli pogresnu adresu</string>
+
+  <!-- Options Menu -->
+  <string name="addsong">Dodaj pesmu</string>
+  <string name="clearSelectedList">Obrisi izabranu listu</string>
+  <string name="exit">Izlaz</string>
+  <string name="openPreferences">Izbor servera</string>
+  
+</resources>
