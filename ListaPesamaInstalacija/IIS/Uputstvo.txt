@@ -1,0 +1,8 @@
+-U Turn windows features on or off postaviti IIS kao na slici.
+-Pokrenuti powershell skriptu InstallSongService.ps1
+-Skripta ce kreirati novi site u IIS, posle tog pokrenuti sajt
+-U windows firewall omoguciti inbound port 555 https://docs.microsoft.com/en-us/windows/security/identity-protection/windows-firewall/create-an-inbound-port-rule
+-Videti koja je IP adresa kompjutera (u Command Prompt upisati ipconfig, adresa je IPv4 Address)
+-Kada se startuje android aplikacija, za server ime, upisati IP adresu i port 555 (npr. 192.168.0.11:555)
+-Ukoliko lokalni server nije dostupan moze se koristiti i azure server na adresi: mysignalrsample.azurewebsites.net
+
