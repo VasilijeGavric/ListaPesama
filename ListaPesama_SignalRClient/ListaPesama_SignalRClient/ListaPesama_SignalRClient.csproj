@@ -64,10 +64,6 @@
     <Reference Include="Plugin.FilePicker, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Plugin.FilePicker.2.1.34\lib\monoandroid80\Plugin.FilePicker.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.FilePicker.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\nuget\FilePicker-Plugin-for-Xamarin-and-Windows-develop\src\Plugin.FilePicker\Plugin.FilePicker.Android\bin\Release\Plugin.FilePicker.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite-net, Version=1.6.292.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\sqlite-net-pcl.1.6.292\lib\netstandard1.1\SQLite-net.dll</HintPath>
     </Reference>
