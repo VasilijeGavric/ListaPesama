@@ -8,10 +8,13 @@ using Microsoft.AspNet.SignalR.Client;
 using System;
 using Android.Widget;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
+using System.Net;
+using Plugin.Connectivity;
 
 namespace ListaPesama_SignalRClient.Activities
 {
-    [Activity(Label = "@string/app_name", Icon = "@drawable/icon")]
+    [Activity(Label = "@string/app_name", Icon = "@drawable/icon", MainLauncher = true)]
     public class MainActivity : Activity
     {
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -43,21 +46,89 @@ namespace ListaPesama_SignalRClient.Activities
         private async Task<IHubProxy> CreateHubProxy()
         {
             var listaPesamaPreferences = Application.Context.GetSharedPreferences("ListaPesama", FileCreationMode.Private);
-            var serverName = listaPesamaPreferences.GetString("ServerName", null);
+            string serverName = listaPesamaPreferences.GetString("ServerName", null);
 
-            var hubConnection = new HubConnection($"http://{serverName}"); //"http://192.168.0.11:555"; "http://mysignalrsample.azurewebsites.net/"
+            bool hostIsAvailable = await IsServiceAvailable(serverName);
+
+            if (!hostIsAvailable)
+            {
+                string ipAdress = GetIpAddress();
+
+                for (int i = 100; i < 105; i++)
+                {
+                    hostIsAvailable = await IsServiceAvailable(ipAdress + i.ToString());
+                    if (hostIsAvailable)
+                    {
+                        serverName = ipAdress + i.ToString();
+                        break;
+                    }
+                }
+            }
+
+            if (hostIsAvailable)
+            {
+                var preferencesEditor = listaPesamaPreferences.Edit();
+                preferencesEditor.PutString("ServerName", serverName);
+                preferencesEditor.Commit();
+            }
+
+            var hubConnection = new HubConnection($"http://{serverName}:555"); //"http://192.168.0.11:555"; "http://mysignalrsample.azurewebsites.net/"
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
             try
             {
                 await hubConnection.Start();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Toast.MakeText(this, ex.InnerException.Message, ToastLength.Short).Show();
+                Toast.MakeText(this, "Greska prilikom rada aplikacije. Proverite wireless konekcije.", ToastLength.Short).Show();
             }
 
             return chatHubProxy;
+        }
+
+        public async Task<bool> IsServiceAvailable(string serverName)
+        {
+            var connectivity = CrossConnectivity.Current;
+            if (!connectivity.IsConnected)
+                return false;
+
+            var reachable = await connectivity.IsRemoteReachable(serverName, 555);
+
+            return reachable;
+        }
+
+        private string GetIpAddress()
+        {
+            IPAddress[] addresses = Dns.GetHostAddresses(Dns.GetHostName());
+            string ipAddress = string.Empty;
+            if (addresses != null && addresses[0] != null)
+            {
+                ipAddress = addresses[0].ToString();
+            }
+            else
+            {
+                ipAddress = null;
+            }
+
+            return ipAddress.Substring(0,ipAddress.LastIndexOf(".") + 1);
+        }
+
+        private async Task<bool> CheckHostAvailabilty(string serverName)
+        {
+            HubConnection hubConnection = new HubConnection(serverName); 
+            bool hostIsAvailable = true;
+
+            try
+            {
+                await hubConnection.Start();
+            }
+            catch (Exception)
+            {
+                hostIsAvailable = false;
+            }
+
+            return hostIsAvailable;
         }
 
         private ActionBar.Tab CreateTab(string title, Fragment fragment)

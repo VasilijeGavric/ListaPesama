@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,7 +11,7 @@ using Android.Widget;
 
 namespace ListaPesama_SignalRClient.Activities
 {
-    [Activity(Label = "@string/app_name", Icon = "@drawable/icon", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Icon = "@drawable/icon")]
     public class PreferencesActivity : Activity
     {
         Button btnSave, btnCancel;
