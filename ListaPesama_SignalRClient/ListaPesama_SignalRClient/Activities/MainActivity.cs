@@ -14,14 +14,14 @@ using Plugin.Connectivity;
 
 namespace ListaPesama_SignalRClient.Activities
 {
-    [Activity(Label = "@string/app_name", Icon = "@drawable/icon", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Icon = "@drawable/icon", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.Main);
+            this.Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 
             var selectedSongsService = new SelectedSongsService();
             var songService = new SongService();
@@ -112,23 +112,6 @@ namespace ListaPesama_SignalRClient.Activities
             }
 
             return ipAddress.Substring(0,ipAddress.LastIndexOf(".") + 1);
-        }
-
-        private async Task<bool> CheckHostAvailabilty(string serverName)
-        {
-            HubConnection hubConnection = new HubConnection(serverName); 
-            bool hostIsAvailable = true;
-
-            try
-            {
-                await hubConnection.Start();
-            }
-            catch (Exception)
-            {
-                hostIsAvailable = false;
-            }
-
-            return hostIsAvailable;
         }
 
         private ActionBar.Tab CreateTab(string title, Fragment fragment)

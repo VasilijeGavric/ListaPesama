@@ -9,7 +9,7 @@ using ListaPesama_SignalRClient.Services;
 
 namespace ListaPesama_SignalRClient.Activities
 {
-    [Activity(Label = "Song Details")]
+    [Activity(Label = "Song Details", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class SongDetailsActivity : Activity
     {
         ISongService songService;

@@ -11,7 +11,7 @@ using Android.Widget;
 
 namespace ListaPesama_SignalRClient.Activities
 {
-    [Activity(Label = "@string/app_name", Icon = "@drawable/icon")]
+    [Activity(Label = "@string/app_name", Icon = "@drawable/icon", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class PreferencesActivity : Activity
     {
         Button btnSave, btnCancel;

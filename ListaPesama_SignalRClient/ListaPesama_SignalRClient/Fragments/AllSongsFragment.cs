@@ -104,20 +104,19 @@ namespace ListaPesama_SignalRClient.Fragments
 
         private async void BtnOpenFile_Click(object sender, EventArgs e)
         {
+            int orderNumber = 0;
+            List<Song> songList = new List<Song>();
+
             try
             {
                 FileData filedata = await CrossFilePicker.Current.PickFile();
 
                 var dataArray = filedata.DataArray;
-
-                List<Song> songList = new List<Song>();
-
                 using (Stream stream = new MemoryStream(dataArray))
                 {
                     using (CsvFileReader reader = new CsvFileReader(stream))
                     {
                         CsvRow row = new CsvRow();
-                        int orderNumber = 0;
                         while (reader.ReadRow(row))
                         {
                             orderNumber++;
@@ -141,9 +140,9 @@ namespace ListaPesama_SignalRClient.Fragments
                     songsAdapter = new SongsAdapter(Activity, songs.ToArray());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Toast.MakeText(Activity, ex.Message, ToastLength.Short).Show();
+                Toast.MakeText(Activity, "Zadnja ispravno ucitana pesma je <" + songList[orderNumber - 2].Title + ">. Proverite pesmu posle nje.", ToastLength.Short).Show();
             }
         }
 
