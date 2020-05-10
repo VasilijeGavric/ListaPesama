@@ -56,7 +56,9 @@ namespace ListaPesama_SignalRClient.Activities
 
                 for (int i = 100; i < 105; i++)
                 {
+                    Toast.MakeText(this, "Provera konekcije za ip adresu:" + ipAdress + i.ToString(), ToastLength.Short).Show();
                     hostIsAvailable = await IsServiceAvailable(ipAdress + i.ToString());
+
                     if (hostIsAvailable)
                     {
                         serverName = ipAdress + i.ToString();
@@ -65,21 +67,25 @@ namespace ListaPesama_SignalRClient.Activities
                 }
             }
 
+            var hubConnection = new HubConnection($"http://{serverName}:555"); //"http://192.168.0.11:555"; "http://mysignalrsample.azurewebsites.net/"
+            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+
             if (hostIsAvailable)
             {
                 var preferencesEditor = listaPesamaPreferences.Edit();
                 preferencesEditor.PutString("ServerName", serverName);
                 preferencesEditor.Commit();
-            }
 
-            var hubConnection = new HubConnection($"http://{serverName}:555"); //"http://192.168.0.11:555"; "http://mysignalrsample.azurewebsites.net/"
-            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-
-            try
-            {
-                await hubConnection.Start();
+                try
+                {
+                    await hubConnection.Start();
+                }
+                catch (Exception)
+                {
+                    Toast.MakeText(this, "Greska prilikom rada aplikacije. Proverite wireless konekcije.", ToastLength.Short).Show();
+                }
             }
-            catch (Exception)
+            else
             {
                 Toast.MakeText(this, "Greska prilikom rada aplikacije. Proverite wireless konekcije.", ToastLength.Short).Show();
             }
@@ -93,7 +99,7 @@ namespace ListaPesama_SignalRClient.Activities
             if (!connectivity.IsConnected)
                 return false;
 
-            var reachable = await connectivity.IsRemoteReachable(serverName, 555);
+            var reachable = await connectivity.IsRemoteReachable(serverName, 555, 200);
 
             return reachable;
         }
