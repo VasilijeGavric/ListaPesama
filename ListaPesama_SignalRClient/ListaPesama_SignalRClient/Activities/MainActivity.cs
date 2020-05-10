@@ -82,12 +82,12 @@ namespace ListaPesama_SignalRClient.Activities
                 }
                 catch (Exception)
                 {
-                    Toast.MakeText(this, "Greska prilikom rada aplikacije. Proverite wireless konekcije.", ToastLength.Short).Show();
+                    Toast.MakeText(this, Resource.String.errorConnectivity, ToastLength.Short).Show();
                 }
             }
             else
             {
-                Toast.MakeText(this, "Greska prilikom rada aplikacije. Proverite wireless konekcije.", ToastLength.Short).Show();
+                Toast.MakeText(this, Resource.String.errorConnectivity, ToastLength.Short).Show();
             }
 
             return chatHubProxy;

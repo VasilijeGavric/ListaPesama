@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -54,9 +55,9 @@ namespace ListaPesama_SignalRClient.Fragments
                         Toast.MakeText(Activity, Resource.String.successfullyAddedSong, ToastLength.Short).Show();
                     });
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Toast.MakeText(Activity, ex.Message, ToastLength.Short).Show();
+                    Toast.MakeText(Activity, Resource.String.errorConnectivity, ToastLength.Short).Show();
                 }
             });
         }
@@ -96,9 +97,9 @@ namespace ListaPesama_SignalRClient.Fragments
                 var message = ((TextView)e.View).Text;
                 await _hubProxy.Invoke("SendMessage", new object[] { message });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Toast.MakeText(Activity, ex.Message, ToastLength.Short).Show();
+                Toast.MakeText(Activity, Resource.String.errorConnectivity, ToastLength.Short).Show();
             }
         }
 

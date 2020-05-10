@@ -11,6 +11,7 @@
   <string name="cancel">Odustani</string>
   <string name="delete">Obrisi</string>
   <string name="successfullyAddedSong">Uspesno dodata pesma</string>
+  <string name="errorConnectivity">Greska prilikom rada aplikacije. Proverite wireless konekcije.</string>
   <string name="openFile">Ubaci pesme iz fajla</string>
   <string name="serverName">Naziv servera</string>
   <string name="emptyServerName">Ime servera ne sme biti prazno</string>

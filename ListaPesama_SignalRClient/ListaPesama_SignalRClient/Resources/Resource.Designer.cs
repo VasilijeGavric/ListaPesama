@@ -795,40 +795,43 @@ namespace ListaPesama_SignalRClient
 			public const int emptyServerName = 2131296262;
 			
 			// aapt resource value: 0x7F090007
-			public const int exit = 2131296263;
+			public const int errorConnectivity = 2131296263;
 			
 			// aapt resource value: 0x7F090008
-			public const int findSong = 2131296264;
+			public const int exit = 2131296264;
 			
 			// aapt resource value: 0x7F090009
-			public const int openFile = 2131296265;
+			public const int findSong = 2131296265;
 			
 			// aapt resource value: 0x7F09000A
-			public const int openPreferences = 2131296266;
+			public const int openFile = 2131296266;
 			
 			// aapt resource value: 0x7F09000B
-			public const int save = 2131296267;
+			public const int openPreferences = 2131296267;
 			
 			// aapt resource value: 0x7F09000C
-			public const int serverName = 2131296268;
+			public const int save = 2131296268;
 			
 			// aapt resource value: 0x7F09000D
-			public const int songArtist = 2131296269;
+			public const int serverName = 2131296269;
 			
 			// aapt resource value: 0x7F09000E
-			public const int songGenre = 2131296270;
+			public const int songArtist = 2131296270;
 			
 			// aapt resource value: 0x7F09000F
-			public const int songOrder = 2131296271;
+			public const int songGenre = 2131296271;
 			
 			// aapt resource value: 0x7F090010
-			public const int songTitle = 2131296272;
+			public const int songOrder = 2131296272;
 			
 			// aapt resource value: 0x7F090011
-			public const int status_bar_notification_info_overflow = 2131296273;
+			public const int songTitle = 2131296273;
 			
 			// aapt resource value: 0x7F090012
-			public const int successfullyAddedSong = 2131296274;
+			public const int status_bar_notification_info_overflow = 2131296274;
+			
+			// aapt resource value: 0x7F090013
+			public const int successfullyAddedSong = 2131296275;
 			
 			static String()
 			{
